@@ -1,48 +1,67 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
-  home: Scaffold(
-    body: ListaTransferencia(),
-    appBar: AppBar(title: Text('Transferências'),),
-    floatingActionButton: FloatingActionButton(
-      onPressed: () {  },
-      child: Icon(Icons.add),
-    ),
-  ),
-));
+void main() => runApp(BytebankApp());
 
-class ListaTransferencia extends StatelessWidget {
+class BytebankApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ItemTrasnferencia(Transferencia(100.0,1000)),
-        ItemTrasnferencia(Transferencia(200.0,2000)),
-        ItemTrasnferencia(Transferencia(300.0,3000)),
-        ItemTrasnferencia(Transferencia(400.0,4000)),
-        ItemTrasnferencia(Transferencia(500.0,5000)),
-        ItemTrasnferencia(Transferencia(600.0,6000)),
-      ],
+    return MaterialApp(
+      home: Scaffold(
+        body: FormularioTransferencia(),
+      ),
     );
   }
 }
 
-class ItemTrasnferencia extends StatelessWidget{
+class FormularioTransferencia extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Criando Transferência'),
+      ),
+    );
+  }
+}
 
+class ListaTransferencia extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Transferências'),
+      ),
+      body: Column(
+        children: [
+          ItemTransferencia(Transferencia(100.0, 1000)),
+          ItemTransferencia(Transferencia(200.0, 2000)),
+          ItemTransferencia(Transferencia(300.0, 3000)),
+          ItemTransferencia(Transferencia(400.0, 4000)),
+          ItemTransferencia(Transferencia(500.0, 5000)),
+          ItemTransferencia(Transferencia(600.0, 6000)),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class ItemTransferencia extends StatelessWidget {
   final Transferencia _transferencia;
 
-
-  ItemTrasnferencia(this._transferencia);
+  ItemTransferencia(this._transferencia);
 
   @override
   Widget build(BuildContext context) {
     return Card(
         child: ListTile(
-          leading: Icon(Icons.monetization_on),
-          title: Text(_transferencia.valor.toString()),
-          subtitle: Text(_transferencia.numeroConta.toString()),
-        )
-    );
+      leading: Icon(Icons.monetization_on),
+      title: Text(_transferencia.valor.toString()),
+      subtitle: Text(_transferencia.numeroConta.toString()),
+    ));
   }
 }
 
